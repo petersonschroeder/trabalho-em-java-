@@ -17,28 +17,101 @@ public class TransacaoController {
 
     public TransacaoController(TransacaoService service) {
         this.service = service;
+    
+
+    @PostMapping("/periodo")
+    public ResponseEntity<EstatisticaResponse> estatisticasPorPeriodo(@RequestBody PeriodoRequestDTO periodo) {
+        EstatisticaResponse estatisticas = service.calcularEstatisticasPorPeriodo(periodo.getDataInicial(), periodo.getDataFinal());
+        return ResponseEntity.ok(estatisticas);
     }
+
+}
 
     @PostMapping
     public ResponseEntity<?> adicionarTransacao(@Valid @RequestBody TransacaoDTO dto) {
         if (dto.getDataHora().isAfter(ZonedDateTime.now())) {
             return ResponseEntity.unprocessableEntity().body("Data futura não permitida");
-        }
+        
+
+    @PostMapping("/periodo")
+    public ResponseEntity<EstatisticaResponse> estatisticasPorPeriodo(@RequestBody PeriodoRequestDTO periodo) {
+        EstatisticaResponse estatisticas = service.calcularEstatisticasPorPeriodo(periodo.getDataInicial(), periodo.getDataFinal());
+        return ResponseEntity.ok(estatisticas);
+    }
+
+}
 
         Transacao transacao = new Transacao(dto.getValor(), dto.getDataHora());
         service.adicionarTransacao(transacao);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    
+
+    @PostMapping("/periodo")
+    public ResponseEntity<EstatisticaResponse> estatisticasPorPeriodo(@RequestBody PeriodoRequestDTO periodo) {
+        EstatisticaResponse estatisticas = service.calcularEstatisticasPorPeriodo(periodo.getDataInicial(), periodo.getDataFinal());
+        return ResponseEntity.ok(estatisticas);
     }
+
+}
 
     @DeleteMapping
     public ResponseEntity<Void> limparTransacoes() {
         service.limparTransacoes();
         return ResponseEntity.ok().build();
+    
+
+    @PostMapping("/periodo")
+    public ResponseEntity<EstatisticaResponse> estatisticasPorPeriodo(@RequestBody PeriodoRequestDTO periodo) {
+        EstatisticaResponse estatisticas = service.calcularEstatisticasPorPeriodo(periodo.getDataInicial(), periodo.getDataFinal());
+        return ResponseEntity.ok(estatisticas);
     }
+
+}
 
     @GetMapping("/estatistica")
     public ResponseEntity<EstatisticaResponse> getEstatistica() {
         EstatisticaResponse estatisticas = service.calcularEstatisticasUltimos60Segundos();
         return ResponseEntity.ok(estatisticas);
+    
+
+    @PostMapping("/periodo")
+    public ResponseEntity<EstatisticaResponse> estatisticasPorPeriodo(@RequestBody PeriodoRequestDTO periodo) {
+        EstatisticaResponse estatisticas = service.calcularEstatisticasPorPeriodo(periodo.getDataInicial(), periodo.getDataFinal());
+        return ResponseEntity.ok(estatisticas);
     }
+
+}
+
+
+    @PostMapping("/periodo")
+    public ResponseEntity<EstatisticaResponse> estatisticasPorPeriodo(@RequestBody PeriodoRequestDTO periodo) {
+        EstatisticaResponse estatisticas = service.calcularEstatisticasPorPeriodo(periodo.getDataInicial(), periodo.getDataFinal());
+        return ResponseEntity.ok(estatisticas);
+    }
+
+}
+
+    @PostMapping("/periodo")
+    public ResponseEntity<EstatisticaResponse> getEstatisticasPorPeriodo(@RequestBody PeriodoRequestDTO periodo) {
+        EstatisticaResponse estatistica = service.calcularEstatisticasPorPeriodo(
+            periodo.getDataInicial(), periodo.getDataFinal()
+        );
+        return ResponseEntity.ok(estatistica);
+    
+
+    @PostMapping("/periodo")
+    public ResponseEntity<EstatisticaResponse> estatisticasPorPeriodo(@RequestBody PeriodoRequestDTO periodo) {
+        EstatisticaResponse estatisticas = service.calcularEstatisticasPorPeriodo(periodo.getDataInicial(), periodo.getDataFinal());
+        return ResponseEntity.ok(estatisticas);
+    }
+
+}
+
+
+    @PostMapping("/periodo")
+    public ResponseEntity<EstatisticaResponse> estatisticasPorPeriodo(@RequestBody PeriodoRequestDTO periodo) {
+        EstatisticaResponse estatisticas = service.calcularEstatisticasPorPeriodo(periodo.getDataInicial(), periodo.getDataFinal());
+        return ResponseEntity.ok(estatisticas);
+    }
+
 }

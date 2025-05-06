@@ -48,3 +48,23 @@ public class TransacaoService {
         return new EstatisticaResponse(sum, avg, min, max, count);
     }
 }
+
+
+    public EstatisticaResponse calcularEstatisticasPorPeriodo(ZonedDateTime dataInicial, ZonedDateTime dataFinal) {
+        List<Transacao> transacoesFiltradas = transacoes.stream()
+                .filter(t -> !t.getDataHora().isBefore(dataInicial) && !t.getDataHora().isAfter(dataFinal))
+                .toList();
+
+        DoubleSummaryStatistics stats = transacoesFiltradas.stream()
+                .mapToDouble(t -> t.getValor().doubleValue())
+                .summaryStatistics();
+
+        return new EstatisticaResponse(
+                stats.getSum(),
+                stats.getAverage(),
+                stats.getMin(),
+                stats.getMax(),
+                stats.getCount()
+        );
+    }
+}
